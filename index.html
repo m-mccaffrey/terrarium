@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Terrarium Planner</title>
+    <meta name="description" content="Plan a gecko or lizard enclosure in 3D, check it against care requirements and get a shopping list." />
+    <meta name="theme-color" content="#2f8f5b" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦎</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three/three.module.min.js",
+          "three/addons/": "./vendor/three/addons/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">🦎</span>
+          <div class="brand-text">
+            <h1>Terrarium Planner</h1>
+            <input id="designName" type="text" maxlength="40" aria-label="Design name" spellcheck="false" />
+          </div>
+        </div>
+        <div class="top-actions">
+          <button id="undoBtn" class="btn icon" title="Undo (Ctrl+Z)" aria-label="Undo">↶</button>
+          <button id="redoBtn" class="btn icon" title="Redo (Ctrl+Shift+Z)" aria-label="Redo">↷</button>
+          <button id="designsBtn" class="btn"><span aria-hidden="true">📁</span><span class="lbl"> My designs</span></button>
+          <button id="saveBtn" class="btn primary"><span aria-hidden="true">💾</span><span class="lbl"> Save</span></button>
+          <button id="helpBtn" class="btn icon" title="Help" aria-label="Help">?</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="panel">
+          <nav id="tabs" class="tabs" role="tablist" aria-label="Sections"></nav>
+          <div id="tabBody" class="tab-body"></div>
+        </aside>
+
+        <section id="stage" class="stage">
+          <div id="viewport" class="viewport"></div>
+
+          <button id="scorePill" class="score-pill" title="Open the habitat check">
+            <span class="score-text">
+              <small>Habitat check <span class="state"></span></small>
+              <span><b class="pct">–</b> <span class="word"></span></span>
+              <span class="bar"><i></i></span>
+            </span>
+          </button>
+
+          <div id="viewTools" class="view-tools" role="toolbar" aria-label="View"></div>
+          <div id="chips" class="chips"></div>
+
+          <div id="legend" class="legend"></div>
+          <div id="selBar" class="sel-bar" role="toolbar" aria-label="Selected item"></div>
+          <div id="toasts" class="toasts" aria-live="polite"></div>
+          <div class="sculpt-hint">Sculpt mode: drag on the ground · right-drag to orbit · Esc to stop</div>
+        </section>
+      </main>
+    </div>
+
+    <div id="modal" class="modal hidden"></div>
+    <div id="printArea" class="print-area"></div>
+
+    <div id="bootError" class="boot-error" hidden>
+      <h2>The 3D view could not start.</h2>
+      <p>Terrarium Planner needs a browser with WebGL (a recent Chrome, Safari, Edge or Firefox).</p>
+      <code></code>
+    </div>
+    <noscript><div class="boot-error">Terrarium Planner needs JavaScript turned on.</div></noscript>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
